@@ -82,7 +82,8 @@ while cv2.waitKey(1) < 0:
         age = AGES[agePred[0].argmax()]
         print(f'Age: {age[1:-1]} years')
 
-# showing result
+# showing result and save
         cv2.putText(finalImg, f'{gender}, {age}', (faceBox[0], faceBox[1] - 10), \
                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.imshow("Result", finalImg)
+        cv2.imwrite(f'{gender}, {age}.jpg', finalImg)
