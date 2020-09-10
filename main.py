@@ -71,18 +71,18 @@ while cv2.waitKey(1) < 0:
                                                                     min(faceBox[2] + padding, frame.shape[1] - 1)]
 
 # pass the blob through the network and obtain the gender detections and predict
-    blob = cv2.dnn.blobFromImage(face, 1.0, (227, 227), MEAN_VALUES, False)
-    genderNet.setInput(blob)
-    genderPred = genderNet.forward()
-    gender = GENDER[genderPred[0].argmax()]
-    print(f'Gender: {gender}')
+        blob = cv2.dnn.blobFromImage(face, 1.0, (227, 227), MEAN_VALUES, False)
+        genderNet.setInput(blob)
+        genderPred = genderNet.forward()
+        gender = GENDER[genderPred[0].argmax()]
+        print(f'Gender: {gender}')
 
-    ageNet.setInput(blob)
-    agePred = ageNet.forward()
-    age = AGES[agePred[0].argmax()]
-    print(f'Age: {age[1:-1]} years')
+        ageNet.setInput(blob)
+        agePred = ageNet.forward()
+        age = AGES[agePred[0].argmax()]
+        print(f'Age: {age[1:-1]} years')
 
 # showing result
-    cv2.putText(finalImg, f'{gender}, {age}', (faceBox[0], faceBox[1] - 10), \
-                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2, cv2.LINE_AA)
-    cv2.imshow("Result", finalImg)
+        cv2.putText(finalImg, f'{gender}, {age}', (faceBox[0], faceBox[1] - 10), \
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2, cv2.LINE_AA)
+        cv2.imshow("Result", finalImg)
